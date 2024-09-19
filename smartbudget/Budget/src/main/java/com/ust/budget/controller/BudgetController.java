@@ -42,6 +42,7 @@ public class BudgetController {
     @GetMapping("/email/{email}")
     public ResponseEntity<List<Budget>> getBudgetByEmail(@PathVariable String email) {
         List<Budget> budgets = budgetService.getBudgetByEmail(email);
+        
         return new ResponseEntity<>(budgets, HttpStatus.OK);
     }
 
@@ -50,6 +51,13 @@ public class BudgetController {
     public ResponseEntity<Budget> getBudgetByCategory(@PathVariable String category) {
         Budget budget = budgetService.getBudgetByCategory(category);
         return new ResponseEntity<>(budget, HttpStatus.OK);
+    }
+    
+    //total by email
+    @GetMapping("/emailtotal/{email}")
+    public ResponseEntity<Double> getTotalBudgetByEmail(@PathVariable String email) {
+        double totalAmount = budgetService.getTotalBudgetAmountByEmail(email);
+        return new ResponseEntity<>(totalAmount, HttpStatus.OK);
     }
 
     // Update a Budget

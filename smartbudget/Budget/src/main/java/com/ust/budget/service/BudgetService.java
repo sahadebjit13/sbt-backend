@@ -25,6 +25,13 @@ public class BudgetService {
         }
         return budgets;
     }
+    
+    
+    // get total budget by email
+    public double getTotalBudgetAmountByEmail(String email) {
+        List<Budget> budgets = budgetRepository.findAllByEmail(email);
+        return budgets.stream().mapToDouble(Budget::getAmount).sum();
+    }
 
     // Create new Budget
     public Budget createBudget(Budget budget) {
